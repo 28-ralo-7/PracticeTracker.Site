@@ -11,10 +11,6 @@ export const AuthApp: FunctionComponent = () => {
             <Routes>
                 <Route path={AuthorizationLinks.auth} Component={Auth}/>
                 <Route path={AuthorizationLinks.test} Component={Test}/>
-                <Route
-                    path="*"
-                    element={<Navigate to="/Auth" replace />}
-                />
             </Routes>
         </BrowserRouter>
     )

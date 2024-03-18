@@ -1,9 +1,9 @@
 import {ChangeEvent, FunctionComponent, useState} from "react";
 import React from "react";
 import style from '../scss/auth.module.scss';
-//import {useDidMount} from "rooks";
 import {RouteProps} from "react-router";
 import logo from '../../../content/img/college_logo.png';
+import {AuthProvider} from "../../../domain/auth/authProvider";
 
 export const Auth: FunctionComponent<RouteProps> = (props) => {
     const [isRegistered, setIsRegistered] = useState(false);
@@ -29,11 +29,17 @@ export const Auth: FunctionComponent<RouteProps> = (props) => {
 
         if (!password) {
             return;
-        }            
+        }
+        try {
+            //const result: any = await AuthProvider.logIn(login, password);
+        }
+        catch {
+            console.log("Произошла ошибка")
+        }
     }
 
     return (
-        <div className={`${style.container}`}>
+        <div className={`${style.container} bg-success`}>
             <div className={`w-25 `}>
                 <div className={`${style.wrapper} card-body`}>
                     <form className={`${style.form} card`}>
@@ -53,7 +59,7 @@ export const Auth: FunctionComponent<RouteProps> = (props) => {
                                    onChange={handleOnChangePassword}>
                             </input>
                         </div>
-                        <button id={"login-submit"} type="button" className={`${style.button} btn btn-primary`} onClick={handleAuth}
+                        <button id={"login-submit"} type="button" className={`${style.button} btn btn-success`} onClick={handleAuth}
                                 disabled={isRegistered}>
                             Войти
                         </button>
